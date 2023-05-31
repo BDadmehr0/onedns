@@ -11,7 +11,8 @@ main():
     root.geometry('400x500')
     root.title('403.online')
 
-    
+    Frame = CTkframe(root)
+    Frame.pack(padx=12,pady=10)
 
     root.mainloop()
 
