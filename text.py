@@ -1,5 +1,7 @@
 import os
 command = 'cat /etc/resolv.conf'
-
+rep1 = 'options edns0 trust-ad'
 # Run
-os.system(command)
+out = os.system(command)
+out = out.replace(rep1, '')
+print(out)
