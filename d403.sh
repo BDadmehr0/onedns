@@ -28,8 +28,8 @@ What is 403?
 info="Please run with sudo for edit /etc/resolv.conf"
 
 #DNSs
-text="nameserver 10.202.10.202\nnameserver 10.202.10.102\noptions edns0 trust-ad\nsearch domain.name"
-reset_text="nameserver 8.8.8.8\noptions edns0 trust-ad\nsearch domain.name"
+text="nameserver 10.202.10.202\nnameserver 10.202.10.102"
+reset_text="nameserver 8.8.8.8"
 
 banner="${BLUE}
     d8888   .d8888b.   .d8888b.
