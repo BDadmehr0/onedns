@@ -25,6 +25,7 @@ What is 403?
 info="Please run with sudo for edit /etc/resolv.conf"
 
 # DNS configurations
+shecandns="nameserver 178.22.122.100\nnnameserver 185.51.200.2"
 text="nameserver 10.202.10.202\nnameserver 10.202.10.102"
 reset_text="nameserver 8.8.8.8"
 
@@ -57,10 +58,14 @@ if [ "$(whoami)" = "root" ]; then
             1)
 				clear
 				while true; do
-
-                	echo "Change DNS to (10.202.10.202, 10.202.10.102)"
-                	exit
-                	echo -e "$text" > /etc/resolv.conf
+					echo -e "$start_menu"
+       				read -p "Select: " i
+					case $i in
+						1)
+                			echo -e "$text" > /etc/resolv.conf
+                			echo "Change DNS to (10.202.10.202, 10.202.10.102)"
+                			exit
+					esac
 				done
                 ;;
             2)
