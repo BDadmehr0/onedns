@@ -65,11 +65,18 @@ if [ "$(whoami)" = "root" ]; then
                 			echo -e "$text" > /etc/resolv.conf
                 			echo "Change DNS to (10.202.10.202, 10.202.10.102)"
                 			exit
+							;;
+						2)
+							echo -e "$shecandns" > /etc/resolv.conf
+                			echo "Change DNS to (178.22.122.100, 185.51.200.2)"
+                			exit
+							;;
 					esac
 				done
                 ;;
             2)
                 echo -e "$reset_text" > /etc/resolv.conf
+				echo "Change DNS to (8.8.8.8)"
                 exit
                 ;;
             3)
