@@ -43,7 +43,7 @@ d88   888  888    888      \"Y8b.${WHITE} | git https://github.com/BDadmehr0${BL
 if [ "$(whoami)" = "root" ]; then
     echo -e "$banner"
 
-	
+	start_menu="${BLUE}[${WHITE}1${BLUE}]${WHITE} 403 online dns\n${BLUE}[${WHITE}1${BLUE}]${WHITE} Shecan dns\n"
 
     # Menu Banner
     mode_banner="${BLUE}[${WHITE}1${BLUE}]${WHITE} Start\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Reset DNS to (8.8.8.8)\n${BLUE}${BLUE}[${WHITE}3${BLUE}]${WHITE} Service check\n${BLUE}[${WHITE}4${BLUE}]${WHITE} New Service request(Cooming)\n${WHITE}${BLUE}[${WHITE}5${BLUE}]${WHITE} About\n${BLUE}[${WHITE}6${BLUE}]${WHITE} Show my DNS\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit${WHITE}\n"
