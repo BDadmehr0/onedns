@@ -2,27 +2,19 @@
 
 # Colors
 BLUE='\033[34m'
-WHITE='\033[37m'
+WHITE='\e[0m'
+RED='\e[31m'
+GREEN='\e[32m'
+YELLOW='\e[33m'
 
 # Service Check API
 url='https://api.anti403.ir/api/search-filter?url='
+
 fil_and_sop='{"isSuccess":true,"message":"result success","result":{"support":true,"sanction_status":true,"crossings":[{"name":"DNS","link":"\/download"},{"name":"\u0633\u0631\u0648\u06cc\u0633 \u0648\u06cc\u0698\u0647","link":"\/subscription"}]},"statusCode":200}'
 n_fil='{"isSuccess":true,"message":"result success","result":{"support":false,"sanction_status":false,"crossings":null},"statusCode":200}'
 fill_and_n_sop='{"isSuccess":true,"message":"result success","result":{"support":false,"sanction_status":true,"crossings":null},"statusCode":200}'
 
-# Texts
-about="
-Fa
 
-403 چیست
-...
-En
-
-What is 403?
-...
-"
-
-info="Please run with sudo for edit /etc/resolv.conf"
 
 # DNS configurations
 shecandns="nameserver 178.22.122.100\nnameserver 185.51.200.2"
@@ -42,6 +34,7 @@ d88   888  888    888      \"Y8b.${WHITE} | git https://github.com/BDadmehr0${BL
 
 # Check if running as root
 if [ "$(whoami)" = "root" ]; then
+    clear
     echo -e "$banner"
 
 	start_menu="${BLUE}[${WHITE}1${BLUE}]${WHITE} 403 online dns\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Shecan dns\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Exit\n"
@@ -64,16 +57,16 @@ if [ "$(whoami)" = "root" ]; then
 					case $i in
 						1)
                 			echo -e "$text" > /etc/resolv.conf
-                			echo "Change DNS to (10.202.10.202, 10.202.10.102)"
+                			echo -e "\n${GREEN}Change DNS to (10.202.10.202, 10.202.10.102)${WHITE}\n"
                 			exit
 							;;
 						2)
 							echo -e "$shecandns" > /etc/resolv.conf
-                			echo "Change DNS to (178.22.122.100, 185.51.200.2)"
+                			echo -e "\n${GREEN}Change DNS to (178.22.122.100, 185.51.200.2)${WHITE}\n"
                 			exit
 							;;
 						3)
-					echo "Bye bye"
+					echo -e "\n${YELLOW}Bye bye${WHITE}\n"
 					exit
 							;;
 					esac
@@ -81,7 +74,7 @@ if [ "$(whoami)" = "root" ]; then
                 ;;
             2)
                 echo -e "$reset_text" > /etc/resolv.conf
-				echo "Change DNS to (8.8.8.8)"
+				echo -e "${GREEN}Change DNS to (8.8.8.8)${WHITE}\n"
                 exit
                 ;;
             3)
@@ -89,21 +82,21 @@ if [ "$(whoami)" = "root" ]; then
                 response=$(curl -s "${url}${service_s_url}")
                 case "$response" in
                     "$fil_and_sop")
-                        echo -e "\e[33mURL Filter or support 403 Service\e[0m"
+                        echo -e "\n${YELLOW}URL Filter or support 403 Service${WHITE}\n"
                         ;;
                     "$n_fil")
-                        echo -e "\e[32mURL No Filter or support 403 Service\e[0m"
+                        echo -e "\n${GREEN}URL No Filter or support 403 Service${WHITE}\n"
                         ;;
                     "$fill_and_n_sop")
-                        echo -e "\e[31mURL Filter or not support 403 Service\e[0m"
+                        echo -e "\n${RED}URL Filter or not support 403 Service${WHITE}\n"
                         ;;
                 esac
                 ;;
             4)
-                #echo "New service request"
+                # s
                 ;;
             5)
-                echo -e "$about"
+                echo -e "\n403 is a platform for the dear programmers and developers of our country who face all kinds of sanctions and disruptions in the development of their desired projects.\n\nBy supporting various protocols, this project allows users to access the libraries and websites they need for development by removing the existing problems.\n\nThis site will be updated over time with user feedback to fix all the problems of this precious community.\n"
                 ;;
             6)
                 #echo res.confg
@@ -112,7 +105,7 @@ if [ "$(whoami)" = "root" ]; then
 
                 # Run
                 out=$(eval "$command")
-                echo "$out"
+                echo -e "${GREEN}$out${WHITE}\n"
                 ;;
             00)
                 #EXIT
@@ -124,11 +117,11 @@ if [ "$(whoami)" = "root" ]; then
                 echo -e "$mode_banner"
                 ;;
             *)
-                echo "Command Not Found"
+                echo -e "${RED}Command Not Found${WHITE}\n"
                 exit
                 ;;
         esac
     done
 else
-    echo -e "$info"
+    echo -e "\n${RED}Please run with sudo for edit /etc/resolv.conf\n${WHITE}"
 fi
