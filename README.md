@@ -8,3 +8,11 @@
 ## En
 
 403 is a platform for the dear programmers and developers of our country who face all kinds of sanctions and disruptions in the development of their desired projects. By supporting various protocols, this project allows users to access the libraries and websites they need for development by removing the existing problems. This site will be updated over time with user feedback to fix all the problems of this precious community.
+
+# Installation
+
+```bash
+git clone https://github.com/BDadmehr0/DNS-403.git
+sudo ./install.sh # install to /usr/local/bin/
+sudo d403.sh # Run
+```
