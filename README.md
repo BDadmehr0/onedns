@@ -1,8 +1,4 @@
-# DNS-403
-403.online Service For linux
-
-درباره این اسکریپت من دیدم که سرویس ۴۰۳ برای لینوکس موجود نیست و شروع کردم به نوشتن برنامه که با اجرا اون دی ان اس ۴۰۳ رو در فایل /etc/resolv.conf بنویسه جلو تر ایده های جذابی مثل اضافه کردن قابلیت های مثل چک کدن ادرس و درخواست ساپورت سرویس رو بهش اضافه کردم
-
+# About
 Fa
 
 403 چیست
@@ -12,4 +8,3 @@ En
 
 What is 403?
 403 is a platform for the dear programmers and developers of our country who face all kinds of sanctions and disruptions in the development of their desired projects. By supporting various protocols, this project allows users to access the libraries and websites they need for development by removing the existing problems. This site will be updated over time with user feedback to fix all the problems of this precious community.
-
