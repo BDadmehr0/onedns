@@ -27,6 +27,5 @@ The good thing about this DNS is that it can be easily installed and executed on
 
 ```bash
 git clone https://github.com/BDadmehr0/onedns.git
-sudo ./install.sh # install to /usr/local/bin/
 sudo onedns.sh # Run
 ```
