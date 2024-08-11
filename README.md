@@ -1,5 +1,11 @@
 <p align=center>
-  <a href="https://github.com/BDadmehr0/onedns/" target="_blank"><img src="./onedns_screenshot_review.png"/></a>
+
+  ___             ____  _   _ ____  
+ / _ \ _ __   ___|  _ \| \ | / ___| 
+| | | | '_ \ / _ \ | | |  \| \___ \ 
+| |_| | | | |  __/ |_| | |\  |___) | | github BDadmehr0/onedns
+ \___/|_| |_|\___|____/|_| \_|____/  | V.2
+
 </p>
 
 ## وان دی ان اس چیست ؟
