@@ -6,6 +6,11 @@
  \___/|_| |_|\___|____/|_| \_|____/  | V.2
 ```
 
+<div align="center">
+  <h1>About</h1>
+</div>
+
+
 ## وان دی ان اس چیست ؟
 
 وان دی ان اس (One DNS) که تشکیل شده از چندین دی ان اس + ابزار خای جدا برای بهبود کیفیت دی ان ها ساخته شده.
@@ -17,7 +22,7 @@ One DNS (One DNS) which consists of several DNS + separate tools to improve the 
 
 The good thing about this DNS is that it can be easily installed and implemented on Linux systems and automatically adjusts DNS.
 
-# Installation - نصب و اجرا
+## Installation - نصب و اجرا
 
 ```bash
 git clone https://github.com/BDadmehr0/onedns.git
