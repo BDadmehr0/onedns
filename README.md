@@ -1,18 +1,20 @@
 # About
 
-## Fa
+## وان دی ان اس چیست ؟
 
-403 چیست
-۴۰۳ پلتفرمی برای برنامه‌نویسان و توسعه‌دهندگان عزیز کشورمان است که امروزه با انواع تحریم و اختلال در توسعه پروژه‌های مورد نظرشان مواجه هستند. این پروژه با پشتیبانی از پروتکل‌های مختلف به کاربران این امکان را می‌دهد که با حذف مشکلات موجود به کتابخانه‌ها و وبسایت‌هایی که برای توسعه نیاز دارند دسترسی داشته باشند. این سایت به مرور زمان با بازخورد کاربران تکمیل می‌شود تا تمام مشکلات این جامعه گرانقدر را رفع کند.
+وان دی ان اس (One DNS) که تشکیل شده از چندین دی ان اس + ابزار خای جدا برای بهبود کیفیت دی ان ها ساخته شده.
 
-## En
+خوبی این دی ان اس این است که بر روی سیستم های لینوکسی به راحتی قابل نصب و اجراس و تنظیم اتوماتیک دی ان را انجام می دهد.
+## What One DNS ?
 
-403 is a platform for the dear programmers and developers of our country who face all kinds of sanctions and disruptions in the development of their desired projects. By supporting various protocols, this project allows users to access the libraries and websites they need for development by removing the existing problems. This site will be updated over time with user feedback to fix all the problems of this precious community.
+One DNS (One DNS) which consists of several DNS + separate tools to improve the quality of DNS.
 
-# Installation
+The good thing about this DNS is that it can be easily installed and implemented on Linux systems and automatically adjusts DNS.
+
+# Installation - نصب و اجرا
 
 ```bash
-git clone https://github.com/BDadmehr0/DNS-403.git
+git clone https://github.com/BDadmehr0/onedns.git
 sudo ./install.sh # install to /usr/local/bin/
-sudo d403.sh # Run
+sudo onedns.sh # Run
 ```
