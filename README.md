@@ -22,7 +22,9 @@ One DNS (One DNS) which consists of several DNS + separate tools to improve the 
 
 The good thing about this DNS is that it can be easily installed and implemented on Linux systems and automatically adjusts DNS.
 
-## Installation - نصب و اجرا
+<div align="center">
+  <h2>Installation - نصب و اجرا</h2>
+</div>
 
 ```bash
 git clone https://github.com/BDadmehr0/onedns.git
