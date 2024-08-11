@@ -17,6 +17,7 @@ fill_and_n_sop='{"isSuccess":true,"message":"result success","result":{"support"
 
 
 # DNS configurations
+electro="nameserver 78.157.42.101\nnameserver 78.157.42.100"
 shecandns="nameserver 178.22.122.100\nnameserver 185.51.200.2"
 text="nameserver 10.202.10.202\nnameserver 10.202.10.102"
 reset_text="nameserver 8.8.8.8"
@@ -37,7 +38,7 @@ if [ "$(whoami)" = "root" ]; then
     clear
     echo -e "$banner"
 
-	start_menu="${BLUE}[${WHITE}1${BLUE}]${WHITE} 403 online dns\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Shecan dns\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Exit\n"
+	start_menu="${BLUE}[${WHITE}1${BLUE}]${WHITE} 403 online dns\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Electro (for youtube unlock)\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Shecan dns\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit\n"
 
     # Menu Banner
     mode_banner="${BLUE}[${WHITE}1${BLUE}]${WHITE} Start\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Reset DNS to (8.8.8.8)\n${BLUE}${BLUE}[${WHITE}3${BLUE}]${WHITE} Service check\n${BLUE}[${WHITE}4${BLUE}]${WHITE} New Service request(Cooming)\n${WHITE}${BLUE}[${WHITE}5${BLUE}]${WHITE} About\n${BLUE}[${WHITE}6${BLUE}]${WHITE} Show my DNS\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit${WHITE}\n"
@@ -60,12 +61,18 @@ if [ "$(whoami)" = "root" ]; then
                 			echo -e "\n${GREEN}Change DNS to (10.202.10.202, 10.202.10.102)${WHITE}\n"
                 			exit
 							;;
-						2)
+						3)
 							echo -e "$shecandns" > /etc/resolv.conf
                 			echo -e "\n${GREEN}Change DNS to (178.22.122.100, 185.51.200.2)${WHITE}\n"
                 			exit
 							;;
-						3)
+						2)
+							echo -e "$electro" > /etc/resolv.conf
+							echo -e "\n${GREEN}Change DNS to (78.157.42.101, 78.157.42.100)${WHITE}\n"
+							exit
+							;;
+						00)
+							exit
 					echo -e "\n${YELLOW}Bye bye${WHITE}\n"
 					exit
 							;;
@@ -99,6 +106,7 @@ if [ "$(whoami)" = "root" ]; then
                 echo -e "\n403 is a platform for the dear programmers and developers of our country who face all kinds of sanctions and disruptions in the development of their desired projects.\n\nBy supporting various protocols, this project allows users to access the libraries and websites they need for development by removing the existing problems.\n\nThis site will be updated over time with user feedback to fix all the problems of this precious community.\n"
                 ;;
             6)
+
                 #echo res.confg
                 command="cat /etc/resolv.conf"
                 rep1="options edns0 trust-ad"
