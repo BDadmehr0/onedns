@@ -136,7 +136,7 @@ while true; do
             echo -e "\n${YELLOW}New service request coming soon!${WHITE}\n"
             ;;
         5)
-            echo -e "\n403 is a platform for the dear programmers and developers of our country who face all kinds of sanctions and disruptions in the development of their desired projects.\n\nBy supporting various protocols, this project allows users to access the libraries and websites they need for development by removing the existing problems.\n\nThis site will be updated over time with user feedback to fix all the problems of this precious community.\n"
+            echo -e "One DNS is made up of several DNS + separate tools to improve the quality of DNS.\nThe good thing about this DNS is that it can be easily installed and executed on Linux systems and automatically adjusts DNS."
             ;;
         6)
             echo -e "${GREEN}$(cat /etc/resolv.conf)${WHITE}\n"
