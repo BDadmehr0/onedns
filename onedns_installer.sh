@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Colors
-BLUE='\033[34m'
-WHITE='\e[0m'
-RED='\e[31m'
-GREEN='\e[32m'
-YELLOW='\e[33m'
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+BLUE=$(tput setaf 4)
+WHITE=$(tput sgr0)
 
 # Service Check API
 url='https://api.anti403.ir/api/search-filter?url='
