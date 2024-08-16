@@ -28,6 +28,6 @@ The good thing about this DNS is that it can be easily installed and executed on
 ```bash
 git clone https://github.com/BDadmehr0/onedns.git
 cd onedns # go to rep dirctory
-chmod +x * # create executeable with scripts
+chmod +x * # create executable with scripts
 sudo onedns.sh # Run
 ```
