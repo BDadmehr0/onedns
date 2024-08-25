@@ -31,3 +31,5 @@ cd onedns # go to rep dirctory
 chmod +x * # create executable with scripts
 sudo onedns.sh # Run
 ```
+
+s
