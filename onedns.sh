@@ -79,7 +79,6 @@ esac
 
 # Continue with the original script if using live mode
 
-clear
 echo -e "$banner"
 
 # Menu Banner
@@ -92,7 +91,6 @@ while true; do
     echo " "
     case $i in
         1)
-            clear
             echo -e "$banner"
             sub_menu="${BLUE}[${WHITE}1${BLUE}]${WHITE} 403 online dns\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Electro (for youtube unlock)\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Shecan dns\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit\n"
             echo -e "$sub_menu"
