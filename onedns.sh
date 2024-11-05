@@ -53,7 +53,6 @@ fi
 
 
 # Prompt for installation or live use
-clear
 echo -e "$banner"
 echo -e "${YELLOW}Would you like to install the program on your system or use it live?${WHITE}"
 echo -e "${BLUE}[${WHITE}1${BLUE}]${WHITE} Install\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Use Live\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit${WHITE}\n"
