@@ -32,7 +32,6 @@ banner="${BLUE}
 
 # Check if running as root
 if [ "$(whoami)" = "root" ]; then
-    clear
     echo -e "$banner"
 
 	start_menu="${BLUE}[${WHITE}1${BLUE}]${WHITE} 403 online dns\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Electro (for youtube unlock)\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Shecan dns\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit\n"
