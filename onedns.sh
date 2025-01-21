@@ -45,12 +45,18 @@ install_onedns() {
     echo -e "${YELLOW}You can run the program anytime by typing 'onedns' in your terminal.${WHITE}\n"
 }
 
+# Change DNS function
+change_dns() {
+    local dns_address="$1"
+    echo -e "nameserver $dns_address" > /etc/resolv.conf
+    echo -e "\n${GREEN}DNS has been updated to: $dns_address${WHITE}\n"
+}
+
 # Check if running as root
 if [[ "$(id -u)" -ne 0 ]]; then
     echo -e "\n${RED}Please run with sudo for editing /etc/resolv.conf and installation\n${WHITE}"
     exit 1
 fi
-
 
 # Prompt for installation or live use
 echo -e "$banner"
@@ -77,12 +83,9 @@ case $install_option in
         ;;
 esac
 
-# Continue with the original script if using live mode
-
+# Main menu
 echo -e "$banner"
-
-# Menu Banner
-menu_options="${BLUE}[${WHITE}1${BLUE}]${WHITE} Start\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Reset DNS to (8.8.8.8)\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Service check\n${BLUE}[${WHITE}4${BLUE}]${WHITE} New Service request (Coming)\n${WHITE}${BLUE}[${WHITE}5${BLUE}]${WHITE} About\n${BLUE}[${WHITE}6${BLUE}]${WHITE} Show my DNS\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit${WHITE}\n"
+menu_options="${BLUE}[${WHITE}1${BLUE}]${WHITE} Start\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Reset DNS to (8.8.8.8)\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Service check\n${BLUE}[${WHITE}4${BLUE}]${WHITE} New Service request (Coming)\n${BLUE}[${WHITE}5${BLUE}]${WHITE} About\n${BLUE}[${WHITE}6${BLUE}]${WHITE} Show my DNS\n${BLUE}[${WHITE}7${BLUE}]${WHITE} Custom DNS\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit${WHITE}\n"
 echo -e "$menu_options"
 
 # Menu loop
@@ -92,19 +95,23 @@ while true; do
     case $i in
         1)
             echo -e "$banner"
-            sub_menu="${BLUE}[${WHITE}1${BLUE}]${WHITE} 403 online dns\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Electro (for youtube unlock)\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Shecan dns\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit\n"
+            sub_menu="${BLUE}[${WHITE}1${BLUE}]${WHITE} 403 online dns\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Electro (for youtube unlock)\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Shecan dns\n${BLUE}[${WHITE}4${BLUE}]${WHITE} Custom DNS\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit\n"
             echo -e "$sub_menu"
             while true; do
                 read -p "Select: " sub_option
                 case $sub_option in
                     1)
-                        change_dns "${dns_configs["default"]}" "10.202.10.202, 10.202.10.102"
+                        change_dns "10.202.10.202,10.202.10.102"
                         ;;
                     2)
-                        change_dns "${dns_configs["electro"]}" "78.157.42.101, 78.157.42.100"
+                        change_dns "78.157.42.101,78.157.42.100"
                         ;;
                     3)
-                        change_dns "${dns_configs["shecan"]}" "178.22.122.100, 185.51.200.2"
+                        change_dns "178.22.122.100,185.51.200.2"
+                        ;;
+                    4)
+                        read -p "Enter your custom DNS (comma-separated): " custom_dns
+                        change_dns "$custom_dns"
                         ;;
                     00)
                         echo -e "\n${YELLOW}Bye bye${WHITE}\n"
@@ -114,7 +121,7 @@ while true; do
             done
             ;;
         2)
-            change_dns "${dns_configs["reset"]}" "8.8.8.8"
+            change_dns "8.8.8.8"
             ;;
         3)
             read -p "Service Url: " service_s_url
@@ -138,6 +145,10 @@ while true; do
         6)
             echo -e "${GREEN}$(cat /etc/resolv.conf)${WHITE}\n"
             ;;
+        7)
+            read -p "Enter your custom DNS (comma-separated): " custom_dns
+            change_dns "$custom_dns"
+            ;;
         00)
             echo -e "\n${YELLOW}Bye bye${WHITE}\n"
             exit 0
@@ -147,4 +158,3 @@ while true; do
             ;;
     esac
 done
-
