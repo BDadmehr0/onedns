@@ -1,10 +1,8 @@
-```
-  ___             ____  _   _ ____  
- / _ \ _ __   ___|  _ \| \ | / ___| 
-| | | | '_ \ / _ \ | | |  \| \___ \ 
-| |_| | | | |  __/ |_| | |\  |___) |
- \___/|_| |_|\___|____/|_| \_|____/
-```
+<p>
+    <a href="#">
+        <img width="150" src="https://github.com/BDadmehr0/onedns/blob/main/logo.png" alt="onedns Logo">
+    </a>
+</p>
 
 One DNS is made up of several DNS + separate tools to improve the quality of DNS.
 
