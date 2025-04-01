@@ -15,7 +15,7 @@ banner="${BLUE}
 | |_| | | | |  __/ |_| | |\  |___) | | github BDadmehr0/onedns
  \___/|_| |_|\___|____/|_| \_|____/  | V.2${WHITE}\n"
 
-# -------------------- چک کردن نیازمندی‌ها --------------------
+# -------------------- نیازمندی‌ها --------------------
 check_requirements() {
     if ! command -v curl &> /dev/null; then
         echo -e "${RED}Error: curl is not installed. Please install curl and try again.${WHITE}"
@@ -23,7 +23,7 @@ check_requirements() {
     fi
 }
 
-# -------------------- تابع نصب --------------------
+# -------------------- نصب --------------------
 install_onedns() {
     current_script_path="$(realpath "$0")"
     install_path="/usr/local/bin/onedns"
@@ -42,7 +42,51 @@ install_onedns() {
     echo -e "${YELLOW}You can now run OneDNS from anywhere with: sudo onedns${WHITE}\n"
 }
 
-# -------------------- نمایش پنل مقدماتی --------------------
+# -------------------- حذف --------------------
+uninstall_onedns() {
+    echo -e "${YELLOW}Are you sure you want to uninstall OneDNS from your system?${WHITE}"
+    read -p "Type 'yes' to confirm: " confirm
+    if [[ "$confirm" == "yes" ]]; then
+        if [[ -f "/usr/local/bin/onedns" ]]; then
+            rm -f /usr/local/bin/onedns
+            [[ -f "/etc/resolv.conf.onedns.bak" ]] && rm -f /etc/resolv.conf.onedns.bak
+            echo -e "${GREEN}OneDNS and backup (if exists) have been removed.${WHITE}"
+        else
+            echo -e "${RED}OneDNS is not installed or already removed.${WHITE}"
+        fi
+        exit 0
+    else
+        echo -e "${GREEN}Uninstallation cancelled.${WHITE}"
+    fi
+}
+
+# -------------------- بکاپ و تغییر DNS --------------------
+change_dns() {
+    backup_file="/etc/resolv.conf.onedns.bak"
+
+    if [[ ! -f "$backup_file" ]]; then
+        cp /etc/resolv.conf "$backup_file"
+        echo -e "${YELLOW}Backup created at $backup_file${WHITE}"
+    fi
+
+    echo -e "${YELLOW}Setting DNS to: $2${WHITE}"
+    echo -e "nameserver $(echo "$2" | cut -d, -f1)" > /etc/resolv.conf
+    echo -e "nameserver $(echo "$2" | cut -d, -f2)" >> /etc/resolv.conf
+    echo -e "${GREEN}DNS successfully changed!${WHITE}\n"
+}
+
+# -------------------- بازگردانی بکاپ --------------------
+restore_backup_dns() {
+    backup_file="/etc/resolv.conf.onedns.bak"
+    if [[ -f "$backup_file" ]]; then
+        cp "$backup_file" /etc/resolv.conf
+        echo -e "${GREEN}Original DNS restored from backup.${WHITE}"
+    else
+        echo -e "${RED}No backup found. DNS has not been restored.${WHITE}"
+    fi
+}
+
+# -------------------- پنل مقدماتی --------------------
 show_intro() {
     echo -e "$banner"
     echo -e "${GREEN}Welcome to OneDNS — Smart DNS Switcher for Linux${WHITE}"
@@ -52,13 +96,13 @@ show_intro() {
     echo -e "${BLUE}--------------------------------------------------${WHITE}"
 }
 
-# -------------------- چک دسترسی روت --------------------
+# -------------------- چک روت --------------------
 if [[ "$(id -u)" -ne 0 ]]; then
     echo -e "\n${RED}Please run with sudo for installing or changing DNS.${WHITE}\n"
     exit 1
 fi
 
-# -------------------- اگر از مسیر نصب‌شده اجرا نشده --------------------
+# -------------------- اگر نصب نشده --------------------
 installed_path="/usr/local/bin/onedns"
 if [[ "$(realpath "$0")" != "$installed_path" ]]; then
     check_requirements
@@ -86,23 +130,23 @@ else
     echo -e "${GREEN}Running OneDNS from system path.${WHITE}\n"
 fi
 
-# -------------------- DNS ها --------------------
+# -------------------- تنظیمات DNS --------------------
 declare -A dns_configs
 dns_configs["default"]="10.202.10.202, 10.202.10.102"
 dns_configs["electro"]="78.157.42.101, 78.157.42.100"
 dns_configs["shecan"]="178.22.122.100, 185.51.200.2"
 dns_configs["reset"]="8.8.8.8"
 
-change_dns() {
-    echo -e "${YELLOW}Setting DNS to: $2${WHITE}"
-    echo -e "nameserver $(echo "$2" | cut -d, -f1)" > /etc/resolv.conf
-    echo -e "nameserver $(echo "$2" | cut -d, -f2)" >> /etc/resolv.conf
-    echo -e "${GREEN}DNS successfully changed!${WHITE}\n"
-}
-
 # -------------------- منوی اصلی --------------------
 echo -e "$banner"
-menu_options="${BLUE}[${WHITE}1${BLUE}]${WHITE} Start DNS Options\n${BLUE}[${WHITE}2${BLUE}]${WHITE} Reset DNS (8.8.8.8)\n${BLUE}[${WHITE}3${BLUE}]${WHITE} Check Website Filter Status\n${BLUE}[${WHITE}4${BLUE}]${WHITE} Request New DNS Service (Coming)\n${BLUE}[${WHITE}5${BLUE}]${WHITE} About\n${BLUE}[${WHITE}6${BLUE}]${WHITE} Show Current DNS\n${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit${WHITE}\n"
+menu_options="${BLUE}[${WHITE}1${BLUE}]${WHITE} Start DNS Options
+${BLUE}[${WHITE}2${BLUE}]${WHITE} Reset DNS (8.8.8.8)
+# ${BLUE}[${WHITE}3${BLUE}]${WHITE} Check Website Filter Status
+${BLUE}[${WHITE}5${BLUE}]${WHITE} About
+${BLUE}[${WHITE}6${BLUE}]${WHITE} Show Current DNS
+${BLUE}[${WHITE}7${BLUE}]${WHITE} Restore Original DNS from Backup
+${BLUE}[${WHITE}9${BLUE}]${WHITE} Uninstall OneDNS
+${BLUE}[${WHITE}00${BLUE}]${WHITE} Exit${WHITE}\n"
 echo -e "$menu_options"
 
 while true; do
@@ -126,27 +170,30 @@ while true; do
         2)
             change_dns "reset" "${dns_configs["reset"]}"
             ;;
-        3)
-            read -p "Enter website URL: " service_s_url
-            response=$(curl -s "https://someapi.com/check?url=${service_s_url}")
-            if [[ "$response" == *"support\":true"* && "$response" == *"sanction_status\":true"* ]]; then
-                echo -e "${YELLOW}Filtered or 403-supported.${WHITE}"
-            elif [[ "$response" == *"support\":false"* && "$response" == *"sanction_status\":false"* ]]; then
-                echo -e "${GREEN}Not filtered or unsupported.${WHITE}"
-            elif [[ "$response" == *"support\":false"* && "$response" == *"sanction_status\":true"* ]]; then
-                echo -e "${RED}Filtered, no 403 support.${WHITE}"
-            else
-                echo -e "${RED}Unknown response.${WHITE}"
-            fi
-            ;;
-        4)
-            echo -e "${YELLOW}Coming soon...${WHITE}"
-            ;;
+        # 3)
+        #     read -p "Enter website URL: " service_s_url
+        #     response=$(curl -s "https://example.com/check?url=${service_s_url}")
+        #     if [[ "$response" == *"support\":true"* && "$response" == *"sanction_status\":true"* ]]; then
+        #         echo -e "${YELLOW}Filtered or 403-supported.${WHITE}"
+        #     elif [[ "$response" == *"support\":false"* && "$response" == *"sanction_status\":false"* ]]; then
+        #         echo -e "${GREEN}Not filtered or unsupported.${WHITE}"
+        #     elif [[ "$response" == *"support\":false"* && "$response" == *"sanction_status\":true"* ]]; then
+        #         echo -e "${RED}Filtered, no 403 support.${WHITE}"
+        #     else
+        #         echo -e "${RED}Unknown response.${WHITE}"
+        #     fi
+        #     ;;
         5)
             echo -e "${GREEN}OneDNS is a lightweight DNS tool designed for simplicity and flexibility on Linux systems. Developed by BDadmehr0 on GitHub.${WHITE}"
             ;;
         6)
             echo -e "${GREEN}$(cat /etc/resolv.conf)${WHITE}"
+            ;;
+        7)
+            restore_backup_dns
+            ;;
+        9)
+            uninstall_onedns
             ;;
         00)
             echo -e "\n${YELLOW}Bye bye${WHITE}"
