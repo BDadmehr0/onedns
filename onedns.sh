@@ -141,7 +141,6 @@ dns_configs["reset"]="8.8.8.8"
 echo -e "$banner"
 menu_options="${BLUE}[${WHITE}1${BLUE}]${WHITE} Start DNS Options
 ${BLUE}[${WHITE}2${BLUE}]${WHITE} Reset DNS (8.8.8.8)
-# ${BLUE}[${WHITE}3${BLUE}]${WHITE} Check Website Filter Status
 ${BLUE}[${WHITE}5${BLUE}]${WHITE} About
 ${BLUE}[${WHITE}6${BLUE}]${WHITE} Show Current DNS
 ${BLUE}[${WHITE}7${BLUE}]${WHITE} Restore Original DNS from Backup
