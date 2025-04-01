@@ -1,82 +1,88 @@
 # OneDNS
 
-> A smart and flexible DNS management tool for Linux users.
+> Smart DNS Switcher for Linux with Backup and Restore  
+> Written in pure Bash — minimal, fast, and efficient.
 
-OneDNS is a simple yet powerful Bash-based tool that helps users easily change their DNS settings, check website access status, and manage multiple DNS providers — all through a clean terminal interface.
+![Version](https://img.shields.io/badge/version-2.0-blue)
+![License](https://img.shields.io/badge/license-GPLv3-green)
 
-## 📦 Features
+## 🚀 About
 
-- 🔧 **Install or use live** — Run without installation or install globally with one click
-- 🌐 **Switch DNS providers** — Easily change between Shecan, Electro, 403 DNS and more
-- 🌍 **Reset to default DNS (Google 8.8.8.8)**
-- 🧪 **Check if a URL is filtered or blocked**
-- 🛠 **Coming soon:** New DNS service request system
-- 👁 **View current DNS settings**
-- 🚀 Clean and simple UI built with colorful Bash menus
+**OneDNS** is a lightweight command-line tool for managing DNS settings on Linux systems.  
+It allows you to switch DNS providers with one click, reset to default, and safely restore your original settings from backup.
 
-## 📥 Installation
+## 🔧 Features
 
-You can run OneDNS directly or install it system-wide:
+- ✅ System-wide installation or live usage (no install needed)
+- ✅ Switch between trusted DNS providers (403, Electro, Shecan)
+- ✅ Reset to Google DNS (8.8.8.8)
+- ✅ Automatic backup of original `/etc/resolv.conf`
+- ✅ Easy restore of backup anytime
+- ✅ Clean uninstallation option
+- 🛑 "Filter check" feature is present in code (commented out for now)
 
+## 📦 Installation
+
+### Live mode (no installation):
 ```bash
 sudo bash onedns.sh
 ```
 
-On launch, you'll see this menu:
-
+### Install system-wide:
+When prompted, select:
 ```
 [1] Install (system-wide)
-[2] Use in Live mode (no install)
-[00] Exit
 ```
-
-Choose `[1]` to install the tool so you can use the `onedns` command anywhere.
+Then use it from anywhere with:
+```bash
+sudo onedns
+```
 
 ## 💻 Usage
 
-After running the script or typing `onedns` (if installed), you’ll get a menu like this:
+You’ll see a menu like this:
 
 ```
 [1] Start DNS Options
 [2] Reset DNS (8.8.8.8)
-[3] Check Website Filter Status
-[4] Request New DNS Service (Coming)
 [5] About
 [6] Show Current DNS
+[7] Restore Original DNS from Backup
+[9] Uninstall OneDNS
 [00] Exit
 ```
 
-### DNS Options
+### DNS Options:
 
-- **403 DNS** – Bypasses common site blocks
-- **Electro** – Great for unlocking YouTube
-- **Shecan** – Trusted local provider
-- **Reset** – Google DNS (8.8.8.8)
+- **403 Online** → `10.202.10.202, 10.202.10.102`
+- **Electro** → DNS optimized for unlocking YouTube
+- **Shecan** → Reliable Iranian DNS provider
 
-## 🌐 Check Website Filter Status
+## 🧠 Backup & Restore
 
-Just paste a domain or URL and OneDNS will tell you if the site is filtered, sanctioned, or supported by 403 services.
+The script creates a **one-time backup** of `/etc/resolv.conf` when you first change the DNS.  
+To restore it at any time, select:
 
-Example:
 ```
-Enter website URL: youtube.com
+[7] Restore Original DNS from Backup
 ```
 
-## ⚠️ Requirements
+## 🧹 Uninstalling
 
-- `bash`
-- `curl`
-- Root access (`sudo`) is needed to modify `/etc/resolv.conf`
+You can completely remove OneDNS and its backup using:
+```
+sudo onedns
+# Then select option [9] Uninstall
+```
 
-## 🔒 Disclaimer
+## 📝 License
 
-Use this tool responsibly and always comply with local internet regulations. This project is for educational and testing purposes.
+This project is licensed under the **GNU General Public License v3.0**.  
+See the [LICENSE](./LICENSE) file for details.
+
 
 ## 👨‍💻 Author
 
-Made with 💙 by [@BDadmehr0](https://github.com/BDadmehr0)  
-Feel free to contribute, fork, or report issues.
+Made with ❤️ by [@BDadmehr0](https://github.com/BDadmehr0)
 
-## 📃 License
-
-MIT License
+If you find this tool useful, feel free to star 🌟 the repo and share it with others!
